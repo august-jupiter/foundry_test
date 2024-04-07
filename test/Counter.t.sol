@@ -3,6 +3,7 @@ pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
 import {Counter} from "../src/Counter.sol";
+import  {stdError} from "forge-std/StdError.sol";
 
 contract CounterTest is Test {
     Counter public counter;
@@ -20,5 +21,15 @@ contract CounterTest is Test {
     function testFuzz_SetNumber(uint256 x) public {
         counter.setNumber(x);
         assertEq(counter.number(), x);
+    }
+
+    // 
+    function testFail_Dec() public {
+        counter.decrement(1);
+    }
+
+    function test_Dec() public {
+        vm.expectRevert(stdError.arithmeticError);
+        counter.decrement(1);
     }
 }
