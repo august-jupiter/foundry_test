@@ -23,7 +23,6 @@ contract CounterTest is Test {
         assertEq(counter.number(), x);
     }
 
-    // 
     function testFail_Dec() public {
         counter.decrement(1);
     }

@@ -23,7 +23,7 @@ contract MyErcTokenTest is Test {
     }
 
     function test_deposit() public {
-        deal(user1, 100 ether);
+        deal(address(token), user1, 100 ether);
         vm.prank(user1);
         token.deposit{value: 10 ether}();
 
